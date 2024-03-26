@@ -64,11 +64,11 @@ jobs:
         # Build for the primary platforms that Trusty can manage
         - go version && go env
         - which go
-        - md5sum go
+        - md5sum $(which go)
         - go run build/ci.go install -dlgo
         - go version && go env
         - which go
-        - md5sum go
+        - md5sum $(which go)
 
         #- go version -m /home/travis/gopath/src/github.com/ethereum/go-ethereum/
         # - go run build/ci.go archive -type tar -signer LINUX_SIGNING_KEY -signify SIGNIFY_KEY -upload gethstore/builds

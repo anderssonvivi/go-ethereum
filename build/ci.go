@@ -199,7 +199,8 @@ func doInstall(cmdline []string) {
 	if *dlgo {
 		csdb := build.MustLoadChecksums("build/checksums.txt")
 		tc.Root = build.DownloadGo(csdb)
-		fmt.Println(tc.Root)
+		fmt.Println("root go: ", tc.Root)
+		exec.Command("go", "version")
 	}
 	// Disable CLI markdown doc generation in release builds.
 	buildTags := []string{"urfave_cli_no_docs"}
