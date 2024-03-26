@@ -424,7 +424,7 @@ func doArchive(cmdline []string) {
 		geth     = "geth-" + basegeth + ext
 		alltools = "geth-alltools-" + basegeth + ext
 	)
-	maybeSkipArchive(env)
+	//maybeSkipArchive(env)
 	if err := build.WriteArchive(geth, gethArchiveFiles); err != nil {
 		log.Fatal(err)
 	}
