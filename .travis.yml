@@ -63,10 +63,12 @@ jobs:
       script:
         # Build for the primary platforms that Trusty can manage
         - go version && go env
+        - which go
         - go run build/ci.go install -dlgo
         - go version && go env
         - geth version
-        - go version -m /home/travis/gopath/src/github.com/ethereum/go-ethereum/
+        - which go
+        #- go version -m /home/travis/gopath/src/github.com/ethereum/go-ethereum/
         # - go run build/ci.go archive -type tar -signer LINUX_SIGNING_KEY -signify SIGNIFY_KEY -upload gethstore/builds
         #- go run build/ci.go install -dlgo -arch 386
         #- go run build/ci.go archive -arch 386 -type tar -signer LINUX_SIGNING_KEY -signify SIGNIFY_KEY -upload gethstore/builds

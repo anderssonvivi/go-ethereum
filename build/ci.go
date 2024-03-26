@@ -197,9 +197,9 @@ func doInstall(cmdline []string) {
 	// Configure the toolchain.
 	tc := build.GoToolchain{GOARCH: *arch, CC: *cc}
 	if *dlgo {
-		fmt.Println("dlgo enabled.")
 		csdb := build.MustLoadChecksums("build/checksums.txt")
 		tc.Root = build.DownloadGo(csdb)
+		fmt.Println(tc.Root)
 	}
 	// Disable CLI markdown doc generation in release builds.
 	buildTags := []string{"urfave_cli_no_docs"}
