@@ -51,7 +51,7 @@ jobs:
       os: linux
       dist: bionic
       sudo: required
-      go: 1.21.6
+      go: 1.21.9
       env:
         - azure-linux
       git:
@@ -64,10 +64,12 @@ jobs:
         # Build for the primary platforms that Trusty can manage
         - go version && go env
         - which go
+        - md5sum go
         - go run build/ci.go install -dlgo
         - go version && go env
-        - geth version
         - which go
+        - md5sum go
+
         #- go version -m /home/travis/gopath/src/github.com/ethereum/go-ethereum/
         # - go run build/ci.go archive -type tar -signer LINUX_SIGNING_KEY -signify SIGNIFY_KEY -upload gethstore/builds
         #- go run build/ci.go install -dlgo -arch 386
