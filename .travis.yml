@@ -51,7 +51,7 @@ jobs:
       os: linux
       dist: bionic
       sudo: required
-      go: 1.20.x
+      go: 1.21.6
       env:
         - azure-linux
       git:
