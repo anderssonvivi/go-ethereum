@@ -51,7 +51,7 @@ jobs:
       os: linux
       dist: bionic
       sudo: required
-      go: 1.21.x
+      go: 1.21.6
       env:
         - azure-linux
       git:
@@ -62,9 +62,11 @@ jobs:
             - gcc-multilib
       script:
         # Build for the primary platforms that Trusty can manage
-        - echo "before " && go version && go env
+        - go version && go env
         - go run build/ci.go install -dlgo
-        - echo "after " && go version && go env
+        - go version && go env
+        - geth version
+        - go version -m /home/travis/gopath/src/github.com/ethereum/go-ethereum/
         # - go run build/ci.go archive -type tar -signer LINUX_SIGNING_KEY -signify SIGNIFY_KEY -upload gethstore/builds
         #- go run build/ci.go install -dlgo -arch 386
         #- go run build/ci.go archive -arch 386 -type tar -signer LINUX_SIGNING_KEY -signify SIGNIFY_KEY -upload gethstore/builds
