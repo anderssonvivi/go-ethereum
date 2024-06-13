@@ -63,7 +63,7 @@ func (w *withdrawalQueue) gatherPending(maxCount int) []*types.Withdrawal {
 		case withdrawal := <-w.pending:
 			withdrawals = append(withdrawals, withdrawal)
 			if len(withdrawals) == maxCount {
-				break
+				return withdrawals
 			}
 		default:
 			return withdrawals
@@ -279,9 +279,12 @@ func (c *SimulatedBeacon) Rollback() {
 
 // Fork sets the head to the provided hash.
 func (c *SimulatedBeacon) Fork(parentHash common.Hash) error {
+	// Ensure no pending transactions.
+	c.eth.TxPool().Sync()
 	if len(c.eth.TxPool().Pending(txpool.PendingFilter{})) != 0 {
 		return errors.New("pending block dirty")
 	}
+
 	parent := c.eth.BlockChain().GetBlockByHash(parentHash)
 	if parent == nil {
 		return errors.New("parent not found")
